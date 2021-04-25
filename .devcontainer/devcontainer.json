@@ -15,6 +15,7 @@
 		"Dart-Code.flutter",
 		"nash.awesome-flutter-snippets",
 		"alexisvt.flutter-snippets",
+		"coenraads.bracket-pair-colorizer",
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
