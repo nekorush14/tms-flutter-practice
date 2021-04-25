@@ -11,4 +11,8 @@ class MyAppViewModel {
   StateProvider<int> fetchProvider() {
     return this._counterProvider;
   }
+
+  void resetCounter(BuildContext context) {
+    context.read(_counterProvider).state = 0;
+  }
 }
