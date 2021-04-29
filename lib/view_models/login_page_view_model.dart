@@ -19,7 +19,7 @@ class LoginPageViewModel extends ChangeNotifier {
   }
 
   /// Sign in to the system with valid formated [email] address and [password].
-  void signIn(AuthenticationContorller _auth, String email, String password) {
+  void signIn(AuthenticationController _auth, String email, String password) {
     if (this._formKey.currentState!.validate()) {
       this._formKey.currentState!.save();
       _auth.signIn(email: email, password: password);

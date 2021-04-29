@@ -1,12 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthenticationContorller {
+class AuthenticationController {
   final FirebaseAuth _firebaseAuth;
 
-  AuthenticationContorller(this._firebaseAuth);
+  AuthenticationController(this._firebaseAuth);
 
   Stream<User?> get authStateChange => _firebaseAuth.authStateChanges();
 
+  /// User sign in to the system with [email] and [password]
   Future<String?> signIn(
       {required String email, required String password}) async {
     try {
@@ -20,6 +21,7 @@ class AuthenticationContorller {
     }
   }
 
+  /// User sign up with [name], [email] and [password]
   Future<String?> signUp(
       {required String email, required String password}) async {
     try {
@@ -33,6 +35,7 @@ class AuthenticationContorller {
     }
   }
 
+  /// User sign out from current session
   Future<void> signout() async {
     await _firebaseAuth.signOut();
   }

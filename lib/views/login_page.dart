@@ -13,7 +13,7 @@ class LoginPage extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final String email = watch(emailProvider).state;
     final String password = watch(passwordProvider).state;
-    final AuthenticationContorller _auth = watch(authServicesProvider);
+    final AuthenticationController _auth = watch(authServicesProvider);
 
     return Scaffold(
       body: Form(
