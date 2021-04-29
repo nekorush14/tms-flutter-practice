@@ -6,7 +6,7 @@
         {
             "label": "Flutter for Web debug",
             "type": "shell",
-            "command": "flutter run -d web-server --web-hostname=0.0.0.0 --web-port=3000"
+            "command": "flutter run -d web-server --web-hostname=0.0.0.0 --web-port=3000 --web-enable-expression-evaluation"
         }
     ]
 }
