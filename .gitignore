@@ -35,7 +35,7 @@
 lib/generated_plugin_registrant.dart
 
 # Ignore Firebase config for "Flutter for Web"
-# web/firebase-config.js
+web/firebase-config.js
 
 # Symbolication related
 app.*.symbols
