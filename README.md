@@ -1,16 +1,21 @@
 # tms
 
-A new Flutter project.
+Time Management System using Flutter frameworks.
 
-## Getting Started
+## Discription
 
-This project is a starting point for a Flutter application.
+In this project, we create time management application.  
+Our app includes following features.
 
-A few resources to get you started if this is your first Flutter project:
+|Status|Function|Detail|
+|:----:|--------|------|
+|✔️|Basic Authentication|User can sign in with email and password.|
+|WIP|Plan how you will spend your time|Users can register what they want to do and their goals with entering a start time and end time.|Users can register what they have done in the planned time and their self-assessment.|
+|WIP|User profile|User can edit own name, application settings.|
+|TBD|Social Authentication|User can sign in or sign up with popular service like Google, Apple, etc.|
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+In addition to the above, we are considering adding many more features.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## LISENCE
+
+This software is released under the Apache License 2.0, see LICENSE.
