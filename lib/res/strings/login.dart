@@ -22,7 +22,7 @@ const String emailValidateMsg = "Email is required";
 /// Validation message of Password input field for Login page
 const String passWordValidateMsg = "Password is required";
 
-/// Validation message of Password format
+/// Validation message of Email format
 ///
 /// For validateing whether inputed email address includes "@" mark
-const String passwordFormatValidateMsg = "Email must have '@'";
+const String emailFormatValidateMsg = "Email must have '@'";

@@ -22,16 +22,23 @@ class AuthenticationController {
   }
 
   /// User sign up with [name], [email] and [password]
-  Future<String?> signUp(
-      {required String email, required String password}) async {
+  Future<bool> signUp(
+      {required String name,
+      required String email,
+      required String password}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return "Signup Successful";
+      UserCredential result = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      User? user = result.user;
+      if (user != null) {
+        user.updateProfile(displayName: name);
+        return true;
+      } else {
+        return false;
+      }
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      print(e.message);
+      return false;
     }
   }
 

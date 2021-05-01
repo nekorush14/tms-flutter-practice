@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final emailProvider = StateProvider<String>((ref) {
+final StateProvider<String> emailProvider = StateProvider<String>((ref) {
   return "";
 });
 
-final passwordProvider = StateProvider<String>((ref) {
+final StateProvider<String> passwordProvider = StateProvider<String>((ref) {
   return "";
 });
