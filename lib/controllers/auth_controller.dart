@@ -21,20 +21,6 @@ class AuthenticationController {
     }
   }
 
-  /// User sign up with [name], [email] and [password]
-  Future<String?> signUp(
-      {required String email, required String password}) async {
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return "Signup Successful";
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    }
-  }
-
   /// User sign out from current session
   Future<void> signout() async {
     await _firebaseAuth.signOut();

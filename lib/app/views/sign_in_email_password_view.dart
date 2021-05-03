@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tms/controllers/authentication_contorller.dart';
+import 'package:tms/app/view_models/sign_in_email_password_view_model.dart';
+import 'package:tms/controllers/auth_controller.dart';
 import 'package:tms/providers/auth_provider.dart';
-import 'package:tms/providers/login_page_provider.dart';
-import 'package:tms/view_models/login_page_view_model.dart';
-import 'package:tms/res/strings/login.dart';
+import 'package:tms/res/labels/sign_in.dart';
 
-class LoginPage extends ConsumerWidget {
-  final LoginPageViewModel _viewModel = LoginPageViewModel();
+class SignInWithEmailAndPassWordPageView extends ConsumerWidget {
+  final SignInEmailPassWordViewModel _viewModel =
+      SignInEmailPassWordViewModel();
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final String email = watch(emailProvider).state;
-    final String password = watch(passwordProvider).state;
     final AuthenticationController _auth = watch(authServicesProvider);
-
     return Scaffold(
       body: Form(
         key: _viewModel.formKey,
@@ -23,7 +20,7 @@ class LoginPage extends ConsumerWidget {
           children: [
             Container(
               child: Text(
-                welcomeMessage,
+                welcomeMessageLbl,
                 style: TextStyle(
                   fontSize: 24,
                 ),
@@ -33,14 +30,14 @@ class LoginPage extends ConsumerWidget {
               child: TextFormField(
                 // onChanged: (value) => _viewModel.updateEmail(context, value),
                 decoration: InputDecoration(
-                  hintText: emailHintText,
+                  hintText: emailHintLbl,
                   border: OutlineInputBorder(),
                 ),
                 validator: (String? value) {
                   if (value != null && value.isEmpty) {
                     return emailValidateMsg;
                   } else if (value != null && value.contains('@') == false) {
-                    return passwordFormatValidateMsg;
+                    return emailFormatValidateMsg;
                   } else {
                     return null;
                   }
@@ -59,7 +56,7 @@ class LoginPage extends ConsumerWidget {
                 // onChanged: (value) => _viewModel.updatePassword(context, value),
                 obscureText: true,
                 decoration: InputDecoration(
-                  hintText: passwordHintText,
+                  hintText: passwordHintLbl,
                   border: OutlineInputBorder(),
                 ),
                 validator: (String? value) {
@@ -80,32 +77,15 @@ class LoginPage extends ConsumerWidget {
             ),
             Container(
               child: ElevatedButton(
-                onPressed: () => _viewModel.signIn(_auth, email, password),
+                onPressed: () => _viewModel.signIn(_auth),
                 child: Text(
-                  loginButtonLabel,
+                  signInButtonLbl,
                 ),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                 ),
               ),
               padding: EdgeInsets.fromLTRB(50, 20, 50, 5),
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: OutlinedButton(
-                onPressed: () => _auth.signUp(email: email, password: password),
-                child: Text(
-                  signUpButtonLabel,
-                  style: TextStyle(
-                    color: Colors.blue,
-                  ),
-                ),
-                style: OutlinedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                  side: BorderSide(width: 1, color: Colors.blue),
-                ),
-              ),
-              padding: EdgeInsets.fromLTRB(50, 5, 50, 20),
             ),
           ],
         ),
