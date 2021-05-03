@@ -40,7 +40,7 @@ class LoginPage extends ConsumerWidget {
                   if (value != null && value.isEmpty) {
                     return emailValidateMsg;
                   } else if (value != null && value.contains('@') == false) {
-                    return passwordFormatValidateMsg;
+                    return emailFormatValidateMsg;
                   } else {
                     return null;
                   }
