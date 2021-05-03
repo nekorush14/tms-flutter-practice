@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tms/providers/auth_provider.dart';
 import 'package:tms/views/login_page.dart';
 import 'package:tms/views/home_page.dart';
