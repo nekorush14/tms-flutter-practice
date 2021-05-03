@@ -10,10 +10,10 @@ const String passwordHintText = "Password";
 
 // Button label
 /// Sign in button label
-const String loginButtonLabel = "Sign-in";
+const String loginButtonLabel = "Sign In";
 
 /// Sign up button label
-const String signUpButtonLabel = "Sign up";
+const String signUpButtonLabel = "Sign Up";
 
 // Validation message
 /// Validation message of Email input field for Login page
@@ -25,4 +25,4 @@ const String passWordValidateMsg = "Password is required";
 /// Validation message of Password format
 ///
 /// For validateing whether inputed email address includes "@" mark
-const String passwordFormatValidateMsg = "Email must have '@'";
+const String emailFormatValidateMsg = "Email must have '@'";
