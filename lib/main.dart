@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tms/views/welcom_page.dart';
+import 'package:tms/app/views/welcome_page.dart';
 
 void main() {
   runApp(

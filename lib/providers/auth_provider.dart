@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tms/controllers/authentication_contorller.dart';
+import 'package:tms/service/controllers/authentication_controller.dart';
 
 final Provider<FirebaseAuth> firebaseAuthProvider =
     Provider<FirebaseAuth>((ref) {

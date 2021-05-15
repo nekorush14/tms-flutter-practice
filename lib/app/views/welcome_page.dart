@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tms/providers/auth_provider.dart';
-import 'package:tms/views/login_page.dart';
-import 'package:tms/views/home_page.dart';
+import 'package:tms/app/views/sign_in_page.dart';
+import 'package:tms/app/views/home_page.dart';
 
 class StartPage extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
