@@ -21,10 +21,8 @@ class SignUpPage extends ConsumerWidget {
             Container(
               child: IconButton(
                 icon: Icon(Icons.arrow_back),
-                onPressed: () =>Navigator.of(context).pop(),
-
+                onPressed: () => Navigator.of(context).pop(),
               ),
-
               alignment: Alignment.topLeft,
             ),
             Container(

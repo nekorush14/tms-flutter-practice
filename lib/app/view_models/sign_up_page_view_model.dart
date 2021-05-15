@@ -12,7 +12,6 @@ class SignUpPageViewModel {
   String password = "";
   String displayName = "";
 
-
   /// Update Email provider state with user inputted [email] address at called [context].
   void updateEmail(BuildContext context, String email) {
     // context.read(emailProvider).state = email;
@@ -35,7 +34,8 @@ class SignUpPageViewModel {
   Future<void> signUp(AuthenticationController _auth) async {
     if (this._formKey.currentState!.validate()) {
       this._formKey.currentState!.save();
-      await _auth.signUp(displayName: displayName, email: email, password: password);
+      await _auth.signUp(
+          displayName: displayName, email: email, password: password);
     }
   }
 }
