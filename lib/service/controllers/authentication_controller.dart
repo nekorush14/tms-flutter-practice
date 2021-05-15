@@ -17,26 +17,42 @@ class AuthenticationController {
       );
       return "Login Successful";
     } on FirebaseAuthException catch (e) {
+      print("${e.message}");
       return e.message;
     }
   }
 
-  /// User sign up with [name], [email] and [password]
+  /// User sign up with [displayName], [email] and [password]
   Future<String?> signUp(
-      {required String email, required String password}) async {
+      {required String displayName,
+      required String email,
+      required String password}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return "Signup Successful";
+      User? user = _firebaseAuth.currentUser;
+      if (user != null) {
+        await user.updateProfile(displayName: displayName);
+      } else {
+        print("User not found");
+      }
+      return "SignUp Successful";
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
   }
 
   /// User sign out from current session
-  Future<void> signout() async {
+  Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
+
+  Future<User?> fetchCurrentUserWithReload() async {
+    await _firebaseAuth.currentUser!.reload();
+    return _firebaseAuth.currentUser;
+  }
+
+  User? fetchCurrentUser() => _firebaseAuth.currentUser;
 }

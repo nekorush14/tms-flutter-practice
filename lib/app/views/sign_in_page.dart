@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tms/controllers/authentication_contorller.dart';
+import 'package:tms/service/controllers/authentication_controller.dart';
 import 'package:tms/providers/auth_provider.dart';
-import 'package:tms/providers/login_page_provider.dart';
-import 'package:tms/view_models/login_page_view_model.dart';
-import 'package:tms/res/strings/login.dart';
+import 'package:tms/res/strings/auth.dart';
+import 'package:tms/app/view_models/sign_in_page_view_model.dart';
+import 'package:tms/app/views/sign_up_page.dart';
 
 class LoginPage extends ConsumerWidget {
   final LoginPageViewModel _viewModel = LoginPageViewModel();
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final String email = watch(emailProvider).state;
-    final String password = watch(passwordProvider).state;
+    // final String email = watch(emailProvider).state;
+    // final String password = watch(passwordProvider).state;
     final AuthenticationController _auth = watch(authServicesProvider);
 
     return Scaffold(
@@ -28,6 +28,14 @@ class LoginPage extends ConsumerWidget {
                   fontSize: 24,
                 ),
               ),
+            ),
+            Container(
+              child: Text(
+                signInButtonLabel,
+                style: TextStyle(fontSize: 20),
+              ),
+              padding: EdgeInsets.fromLTRB(50, 50, 50, 0),
+              alignment: Alignment.center,
             ),
             Container(
               child: TextFormField(
@@ -80,20 +88,24 @@ class LoginPage extends ConsumerWidget {
             ),
             Container(
               child: ElevatedButton(
-                onPressed: () => _viewModel.signIn(_auth, email, password),
+                onPressed: () => _viewModel.signIn(_auth),
                 child: Text(
-                  loginButtonLabel,
+                  signInButtonLabel,
                 ),
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 ),
               ),
-              padding: EdgeInsets.fromLTRB(50, 20, 50, 5),
+              padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
             ),
             Container(
               alignment: Alignment.center,
               child: OutlinedButton(
-                onPressed: () => _auth.signUp(email: email, password: password),
+                // onPressed: () => _auth.signUp(email: email, password: password),
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => SignUpPage()));
+                },
                 child: Text(
                   signUpButtonLabel,
                   style: TextStyle(
@@ -101,11 +113,11 @@ class LoginPage extends ConsumerWidget {
                   ),
                 ),
                 style: OutlinedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                   side: BorderSide(width: 1, color: Colors.blue),
                 ),
               ),
-              padding: EdgeInsets.fromLTRB(50, 5, 50, 20),
+              padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
             ),
           ],
         ),
