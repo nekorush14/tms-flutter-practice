@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tms/service/controllers/authentication_controller.dart';
-import 'package:tms/providers/login_page_provider.dart';
+import 'package:tms/providers/login_page_providers.dart';
 
 class LoginPageViewModel extends ChangeNotifier {
   final _formKey = GlobalKey<FormState>();
@@ -24,10 +24,11 @@ class LoginPageViewModel extends ChangeNotifier {
   }
 
   /// Sign in to the system with valid formatted [email] address and [password].
-  Future<void> signIn(AuthenticationController _auth) async {
+  Future<bool> signIn(AuthenticationController _auth) async {
     if (this._formKey.currentState!.validate()) {
       this._formKey.currentState!.save();
-      await _auth.signIn(email: email, password: password);
+      return await _auth.signIn(email: email, password: password);
     }
+    return false;
   }
 }
