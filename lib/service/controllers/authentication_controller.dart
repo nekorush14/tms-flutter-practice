@@ -39,7 +39,7 @@ class AuthenticationController {
         await user.updateProfile(displayName: displayName);
       } else {
         print("User not found");
-        _container.read(businessExceptionProvider).updateTitleAndContent(
+        _container.read(businessExceptionProvider).create(
             "User can't find",
             "User has been successfully created, but lost signed up user in this connection. \nPlease re-sign in.");
 
@@ -75,9 +75,8 @@ class AuthenticationController {
   User? fetchCurrentUser() => _firebaseAuth.currentUser;
 
   void createFbAuthExceptionTelemetry(FirebaseAuthException e) {
-    _container
-        .read(businessExceptionProvider)
-        .updateTitleAndContent("FirebaseAuthException", e.message!);
+    var provider = providerContainer.read(businessExceptionProvider);
+    provider.create("FirebaseAuthException", e.message!);
 
     _container
         .read(loggerProvider)

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tms/app/view_models/sign_in_page_view_model.dart';
 import 'package:tms/app/views/sign_up_page.dart';
 import 'package:tms/app/views/widgets/exception_dialog.dart';
@@ -7,15 +9,14 @@ import 'package:tms/providers/auth_providers.dart';
 import 'package:tms/providers/util_providers.dart';
 import 'package:tms/res/strings/auth.dart';
 import 'package:tms/service/controllers/authentication_controller.dart';
-import 'package:tms/utils/business_exception_handler.dart';
 
-class LoginPage extends ConsumerWidget {
+class LoginPage extends HookWidget {
   final LoginPageViewModel _viewModel = LoginPageViewModel();
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final AuthenticationController _auth = watch(authServicesProvider);
-    final _exception = watch(businessExceptionProvider);
+  Widget build(BuildContext context) {
+    final AuthenticationController _auth = useProvider(authServicesProvider);
+    final _exception = useProvider(businessExceptionProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -92,13 +93,12 @@ class LoginPage extends ConsumerWidget {
               Container(
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (await _viewModel.signIn(_auth) == false
-                    && _exception.content != null
-                    && _exception.content != "") {
+                    if (await _viewModel.signIn(_auth) == false &&
+                        context.read(businessExceptionProvider).content != "") {
                       await showDialog(
                           context: context,
-                          builder: (context) =>
-                              ExceptionDialog(context, watch, null));
+                          builder: (BuildContext context) =>
+                              ExceptionDialog(context, null));
                     }
                   },
                   child: Text(

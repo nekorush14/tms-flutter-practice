@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tms/app/views/welcome_page.dart';
+import 'package:tms/providers/util_providers.dart';
 
 void main() {
   runApp(
-    ProviderScope(child: MyApp()),
+    UncontrolledProviderScope(container: providerContainer, child: MyApp()),
   );
 }
 
