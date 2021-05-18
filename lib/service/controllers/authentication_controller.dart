@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tms/providers/util_providers.dart';
+import 'package:tms/res/strings/message.dart';
 
 class AuthenticationController {
   final FirebaseAuth _firebaseAuth;
@@ -38,17 +39,15 @@ class AuthenticationController {
       if (user != null) {
         await user.updateProfile(displayName: displayName);
       } else {
-        print("User not found");
-        _container.read(businessExceptionProvider).create(
-            "User can't find",
-            "User has been successfully created, but lost signed up user in this connection. \nPlease re-sign in.");
+        _container
+            .read(businessExceptionProvider)
+            .create(userNotFoundExceptionTitle, userNotFoundMsg);
 
-        _container.read(loggerProvider).shout("User can't find");
-        _container.read(loggerProvider).shout(
-            "User has been successfully created, but lost signed up user in this connection. \nPlease re-sign in.");
+        _container.read(loggerProvider).shout(userNotFoundExceptionTitle);
+        _container.read(loggerProvider).shout(userNotFoundMsg);
         _container
             .read(loggerProvider)
-            .shout("User object unexpectedly becomes Null");
+            .shout(userNotFoundLogMsg);
         return false;
       }
       return true;
@@ -76,11 +75,9 @@ class AuthenticationController {
 
   void createFbAuthExceptionTelemetry(FirebaseAuthException e) {
     var provider = providerContainer.read(businessExceptionProvider);
-    provider.create("FirebaseAuthException", e.message!);
+    provider.create(firebaseAuthExceptionTitle, e.message!);
 
-    _container
-        .read(loggerProvider)
-        .shout("FirebaseAuthException has occurred.");
+    _container.read(loggerProvider).shout(fbAuthExpOccurredMsg);
     _container.read(loggerProvider).shout(e.code);
     _container.read(loggerProvider).shout(e.message);
     _container.read(loggerProvider).shout(e.stackTrace);

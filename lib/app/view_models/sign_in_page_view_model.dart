@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tms/service/controllers/authentication_controller.dart';
-import 'package:tms/providers/login_page_providers.dart';
 
 class LoginPageViewModel extends ChangeNotifier {
   final _formKey = GlobalKey<FormState>();

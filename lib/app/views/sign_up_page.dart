@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tms/app/view_models/sign_up_page_view_model.dart';
+import 'package:tms/app/views/widgets/exception_dialog.dart';
 import 'package:tms/providers/auth_providers.dart';
+import 'package:tms/providers/util_providers.dart';
 import 'package:tms/res/strings/auth.dart';
 import 'package:tms/service/controllers/authentication_controller.dart';
 
@@ -118,11 +120,18 @@ class SignUpPage extends ConsumerWidget {
                 Container(
                   alignment: Alignment.center,
                   child: ElevatedButton(
-                    // onPressed: () => _auth.signUp(email: email, password: password),
                     onPressed: () async {
                       // Pop page only sign up succeed
                       if (await _viewModel.signUp(_auth)) {
-                        Navigator.of(context).pop();
+                        if (context.read(businessExceptionProvider).content !=
+                            "") {
+                          await showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  ExceptionDialog(context, null));
+                        } else {
+                          Navigator.of(context).pop();
+                        }
                       }
                     },
                     child: Text(
