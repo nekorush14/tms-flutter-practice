@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:tms/service/controllers/authentication_controller.dart';
-import 'package:tms/providers/login_page_provider.dart';
+import 'package:tms/providers/login_page_providers.dart';
 
 class SignUpPageViewModel {
   final _formKey = GlobalKey<FormState>();
@@ -30,12 +30,15 @@ class SignUpPageViewModel {
     this.displayName = displayName;
   }
 
-  /// Sign in to the system with valid formatted [email] address and [password].
-  Future<void> signUp(AuthenticationController _auth) async {
+  /// Sign in to the system with valid formatted email address and password.
+  ///
+  /// Return [true] when sign up has been succeed, otherwise return [false].
+  Future<bool> signUp(AuthenticationController _auth) async {
     if (this._formKey.currentState!.validate()) {
       this._formKey.currentState!.save();
-      await _auth.signUp(
+      return await _auth.signUp(
           displayName: displayName, email: email, password: password);
     }
+    return false;
   }
 }
