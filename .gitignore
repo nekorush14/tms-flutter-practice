@@ -58,17 +58,17 @@ app.*.map.json
 
 ### Flutter ###
 # Flutter/Dart/Pub related
-**/doc/api/
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.fvm/
-.packages
-.pub-cache/
-.pub/
-build/
-coverage/
-lib/generated_plugin_registrant.dart
+#**/doc/api/
+#.dart_tool/
+#.flutter-plugins
+#.flutter-plugins-dependencies
+#.fvm/
+#.packages
+#.pub-cache/
+#.pub/
+#build/
+#coverage/
+#lib/generated_plugin_registrant.dart
 # For library packages, don’t commit the pubspec.lock file.
 # Regenerating the pubspec.lock file lets you test your package against the latest compatible versions of its dependencies.
 # See https://dart.dev/guides/libraries/private-files#pubspeclock
@@ -101,7 +101,7 @@ lib/generated_plugin_registrant.dart
 **/ios/**/profile
 **/ios/**/xcuserdata
 **/ios/.generated/
-**/ios/Flutter/.last_build_id
+#**/ios/Flutter/.last_build_id
 **/ios/Flutter/App.framework
 **/ios/Flutter/Flutter.framework
 **/ios/Flutter/Flutter.podspec
@@ -137,7 +137,7 @@ lib/generated_plugin_registrant.dart
 
 ### macOS ###
 # General
-.DS_Store
+#.DS_Store
 .AppleDouble
 .LSOverride
 
