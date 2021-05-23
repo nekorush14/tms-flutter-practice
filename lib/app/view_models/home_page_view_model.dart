@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tms/providers/auth_providers.dart';
 
-class HomePageViewModel {
+class HomePageViewModel extends StateNotifier {
   final ProviderContainer _container = new ProviderContainer();
   String name = "";
 
-  HomePageViewModel() {
+  HomePageViewModel() : super(null) {
     this.name = "";
   }
 

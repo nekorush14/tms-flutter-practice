@@ -16,7 +16,6 @@ class LoginPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final AuthenticationController _auth = useProvider(authServicesProvider);
-    final _exception = useProvider(businessExceptionProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -95,6 +94,8 @@ class LoginPage extends HookWidget {
                   onPressed: () async {
                     if (await _viewModel.signIn(_auth) == false &&
                         context.read(businessExceptionProvider).content != "") {
+                      context.read(loggerProvider).severe(
+                          context.read(businessExceptionProvider).content);
                       await showDialog(
                           context: context,
                           builder: (BuildContext context) =>
