@@ -3,8 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class BusinessExceptionStateNotifier extends StateNotifier<BusinessException> {
   BusinessExceptionStateNotifier([BusinessException? businessException])
       : super(businessException ?? BusinessException(title: "", content: ""));
-
-  BusinessException dispatch() => state;
 }
 
 class BusinessException {

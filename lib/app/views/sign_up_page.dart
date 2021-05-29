@@ -4,7 +4,8 @@ import 'package:tms/app/view_models/sign_up_page_view_model.dart';
 import 'package:tms/app/views/widgets/exception_dialog.dart';
 import 'package:tms/providers/auth_providers.dart';
 import 'package:tms/providers/util_providers.dart';
-import 'package:tms/res/strings/auth.dart';
+import 'package:tms/res/strings/messages.dart';
+import 'package:tms/res/strings/labels.dart';
 import 'package:tms/service/controllers/authentication_controller.dart';
 
 class SignUpPage extends ConsumerWidget {
@@ -122,7 +123,7 @@ class SignUpPage extends ConsumerWidget {
                   child: ElevatedButton(
                     onPressed: () async {
                       // Pop page only sign up succeed
-                      if (await _viewModel.signUp(_auth)) {
+                      if (await _viewModel.signUp(context, _auth)) {
                         if (context.read(businessExceptionProvider).content !=
                             "") {
                           await showDialog(

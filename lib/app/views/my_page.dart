@@ -53,6 +53,7 @@ class MyPage extends HookWidget {
               fontSize: 24,
             ),
           ),
+          alignment: Alignment.center,
         ),
         Container(
           child: Text(
@@ -61,6 +62,7 @@ class MyPage extends HookWidget {
               fontSize: 24,
             ),
           ),
+          alignment: Alignment.center,
         ),
         Container(
           child: Text(
@@ -69,10 +71,11 @@ class MyPage extends HookWidget {
               fontSize: 24,
             ),
           ),
+          alignment: Alignment.center,
         ),
         ElevatedButton(
           onPressed: () async {
-            await _auth.signOut();
+            await _auth.signOut(context: context);
             _tabTypeProvider.reset();
           },
           child: Text('Sign-out'),

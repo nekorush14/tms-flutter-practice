@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tms/providers/util_providers.dart';
-import 'package:tms/res/strings/message.dart';
+import 'package:tms/res/strings/messages.dart';
 
 class AuthenticationController {
   final FirebaseAuth _firebaseAuth;
@@ -12,7 +13,10 @@ class AuthenticationController {
   Stream<User?> get authStateChange => _firebaseAuth.authStateChanges();
 
   /// User sign in to the system with [email] and [password]
-  Future<bool> signIn({required String email, required String password}) async {
+  Future<bool> signIn(
+      {required BuildContext context,
+      required String email,
+      required String password}) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
@@ -20,14 +24,15 @@ class AuthenticationController {
       );
       return true;
     } on FirebaseAuthException catch (e) {
-      createFbAuthExceptionTelemetry(e);
+      createFbAuthExceptionTelemetry(e, context);
       return false;
     }
   }
 
   /// User sign up with [displayName], [email] and [password]
   Future<bool> signUp(
-      {required String displayName,
+      {required BuildContext context,
+      required String displayName,
       required String email,
       required String password}) async {
     try {
@@ -45,24 +50,22 @@ class AuthenticationController {
 
         _container.read(loggerProvider).shout(userNotFoundExceptionTitle);
         _container.read(loggerProvider).shout(userNotFoundMsg);
-        _container
-            .read(loggerProvider)
-            .shout(userNotFoundLogMsg);
+        _container.read(loggerProvider).shout(userNotFoundLogMsg);
         return false;
       }
       return true;
     } on FirebaseAuthException catch (e) {
-      createFbAuthExceptionTelemetry(e);
+      createFbAuthExceptionTelemetry(e, context);
       return false;
     }
   }
 
   /// User sign out from current session
-  Future<void> signOut() async {
+  Future<void> signOut({required BuildContext context}) async {
     try {
       await _firebaseAuth.signOut();
     } on FirebaseAuthException catch (e) {
-      createFbAuthExceptionTelemetry(e);
+      createFbAuthExceptionTelemetry(e, context);
     }
   }
 
@@ -73,13 +76,14 @@ class AuthenticationController {
 
   User? fetchCurrentUser() => _firebaseAuth.currentUser;
 
-  void createFbAuthExceptionTelemetry(FirebaseAuthException e) {
-    var provider = providerContainer.read(businessExceptionProvider);
+  void createFbAuthExceptionTelemetry(
+      FirebaseAuthException e, BuildContext context) {
+    var provider = context.read(businessExceptionProvider);
     provider.create(firebaseAuthExceptionTitle, e.message!);
 
-    _container.read(loggerProvider).shout(fbAuthExpOccurredMsg);
-    _container.read(loggerProvider).shout(e.code);
-    _container.read(loggerProvider).shout(e.message);
-    _container.read(loggerProvider).shout(e.stackTrace);
+    context.read(loggerProvider).shout(fbAuthExpOccurredMsg);
+    context.read(loggerProvider).shout(e.code);
+    context.read(loggerProvider).shout(e.message);
+    context.read(loggerProvider).shout(e.stackTrace);
   }
 }

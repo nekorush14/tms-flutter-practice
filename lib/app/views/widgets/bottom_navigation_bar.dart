@@ -21,7 +21,7 @@ BottomNavigationBar buildBottomNavigationBar(
         label: 'Home',
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.account_circle),
+        icon: Icon(Icons.person),
         label: 'My Page',
       ),
     ],

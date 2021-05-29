@@ -7,7 +7,8 @@ import 'package:tms/app/views/sign_up_page.dart';
 import 'package:tms/app/views/widgets/exception_dialog.dart';
 import 'package:tms/providers/auth_providers.dart';
 import 'package:tms/providers/util_providers.dart';
-import 'package:tms/res/strings/auth.dart';
+import 'package:tms/res/strings/messages.dart';
+import 'package:tms/res/strings/labels.dart';
 import 'package:tms/service/controllers/authentication_controller.dart';
 
 class LoginPage extends HookWidget {
@@ -92,7 +93,7 @@ class LoginPage extends HookWidget {
               Container(
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (await _viewModel.signIn(_auth) == false &&
+                    if (await _viewModel.signIn(context, _auth,) == false &&
                         context.read(businessExceptionProvider).content != "") {
                       context.read(loggerProvider).severe(
                           context.read(businessExceptionProvider).content);

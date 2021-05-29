@@ -22,10 +22,12 @@ class LoginPageViewModel extends ChangeNotifier {
   }
 
   /// Sign in to the system with valid formatted [email] address and [password].
-  Future<bool> signIn(AuthenticationController _auth) async {
+  Future<bool> signIn(
+      BuildContext context, AuthenticationController _auth) async {
     if (this._formKey.currentState!.validate()) {
       this._formKey.currentState!.save();
-      return await _auth.signIn(email: email, password: password);
+      return await _auth.signIn(
+          context: context, email: email, password: password);
     }
     return false;
   }
