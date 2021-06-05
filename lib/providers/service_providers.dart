@@ -3,7 +3,7 @@ import 'package:tms/models/plan/plan_model.dart';
 import 'package:tms/providers/auth_providers.dart';
 import 'package:tms/service/controllers/plan_list_controller.dart';
 
-final PlanListServiceProvider =
+final planListServiceProvider =
     StateNotifierProvider<PlanListController, AsyncValue<List<Plan>>>(
   (ref) {
     final user = ref.watch(authServicesProvider);

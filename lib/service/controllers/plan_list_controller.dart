@@ -8,7 +8,11 @@ class PlanListController extends StateNotifier<AsyncValue<List<Plan>>> {
   final Reader _reader;
   final String? _userId;
 
-  PlanListController(this._reader, this._userId) : super(AsyncValue.loading());
+  PlanListController(this._reader, this._userId) : super(AsyncValue.loading()) {
+    if (_userId != null) {
+      retrievePlans();
+    }
+  }
 
   Future<void> retrievePlans({bool isRefreshing = false}) async {
     if (isRefreshing) {
@@ -50,7 +54,7 @@ class PlanListController extends StateNotifier<AsyncValue<List<Plan>>> {
     }
   }
 
-  Future<void> updateItem({required Plan updatedPlan}) async {
+  Future<void> updatePlan({required Plan updatedPlan}) async {
     try {
       await _reader(planRepositoryProvider)
           .updatePlan(userId: _userId!, plan: updatedPlan);
@@ -65,7 +69,7 @@ class PlanListController extends StateNotifier<AsyncValue<List<Plan>>> {
     }
   }
 
-  Future<void> deleteItem({required String planId}) async {
+  Future<void> deletePlan({required String planId}) async {
     try {
       await _reader(planRepositoryProvider).deletePlan(
         userId: _userId!,
