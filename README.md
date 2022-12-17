@@ -1,4 +1,4 @@
-# tms
+# tms-flutter-practice
 
 Time Management System using Flutter frameworks.
 
